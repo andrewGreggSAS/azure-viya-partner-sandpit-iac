@@ -33,6 +33,7 @@ Variables files allow you to vary the specification of the infrastructure easily
 * Being the Owner of your own Azure subscription is the target use-case here
 * You must have a Viya 4 order ( supplied by your SAS partner representative)
 * You must have access to your order at https://my.sas.com/en/my-orders.html
+* Suggested order is XXXXXXXX + YYYYYYYY + ZZZZZZZZ
 * You must create an Ubuntu machine connected to your network via your own vpn  
 * was vpn.sas.com/secure
     * The best way to achieve this is to utilise the latest Windows Subsystem for Linux (WSL2) release of Ubuntu
@@ -62,8 +63,8 @@ It is IMPORTANT that BOTH of these variables conform to a few rules:
 * must not end with a dash
 
 ```
-cd azure-viya-ca-env-iac
-vi core-variables.yaml
+cd azure-viya-partner-env-iac
+nano core-variables.yaml
 ```
 
 When your deployment is complete, the environment will be accessed on the URL {deployment_environment}-{deployment_name}.{azure_location}.cloudapp.azure.com. So as an example, I use partner as my *deployment_name* and a simple short name indicating the Viya environment's purpose like *sandpit*, making the URL:
@@ -74,7 +75,7 @@ This is to facilitate deploying multiple environments to a single set of kuberne
 There are four scripts that each must be run  to complete the process, each with its own folder also containing a variables yaml file.
 *resources/deployment_repo-variables.yaml* MUST be edited with your own software order information.
 ```
-vi resources/deployment_repo-variables.yaml
+nano resources/deployment_repo-variables.yaml
 ```
 
 All other variables files contain current tested default values. These can be customized to your requirement but changes to client software versions (such as ansible, kubectl or terraform) can cause issues that will need manual troubleshooting and intervention.
@@ -181,7 +182,7 @@ TFPLAN=${deployment_name}-aks.plan
 time terraform apply "./${TFPLAN}" 2>&1 \
 | tee -a $HOME/${deployment_name}-aks/viya4-iac-azure/$(date +%Y%m%dT%H%M%S)_terraform-apply.log
 
-# After this you may need to regenerate your kube_config file
+# After this you MAY need to regenerate your kube_config file
 terraform output kube_config | sed '1d;$d' > ~/.kube/${deployment_name}-aks-kubeconfig.confcd
 ```
 
