@@ -91,10 +91,10 @@ if [ -L  /etc/resolv.conf ]
     # sudo cp /run/resolvconf/resolv.conf /etc/resolv.conf
     # sudo perl -p -i -e 's/nameserver 172\.26\.40\.12/nameserver 172.26.40.178\nnameserver 8.8.8.8/' /etc/resolv.conf
     sudo cat <<EOF | sudo tee /etc/resolv.conf
-nameserver 172.26.40.178
-nameserver 172.26.40.12
+# nameserver 172.26.40.178
+# nameserver 172.26.40.12
 nameserver 8.8.8.8
-search sas.com
+# search sas.com
 EOF
 
     cat <<EOF | sudo tee /etc/wsl.conf
