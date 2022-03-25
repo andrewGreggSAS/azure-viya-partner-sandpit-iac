@@ -83,6 +83,7 @@ fi
 
 ############################
 # DNS workaround for resolution with SAS VPN and WSL issues
+# removed SAS refences so only pointing to google search 
 ############################
 if [ -L  /etc/resolv.conf ]
     then
