@@ -281,7 +281,7 @@ ansible localhost \
         line='export KUBECONFIG=~/.kube/config' \
         state=present" \
     --diff
-	
+
 # Configure kubectl auto-completion
 echo "[INFO] Setup kubectl auto-completion."
 source <(kubectl completion bash)

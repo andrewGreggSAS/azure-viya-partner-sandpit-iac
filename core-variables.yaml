@@ -1,12 +1,14 @@
 deployment:
   # 11 CHARACTERS OR LESS - Name the deployment something specific but readable - This is used for the DNS entry to the platform
+  # ie Parter
   name: '<deploymentname>'
+  # ie sandpit
   environment: '<environmentname>'
   git:
-    gitbase: "<gitlab.sas.com/<your_username>/"
+    gitbase: "<github.com/<your_username>/"
     user:
       name: "<your_username>"
-      email: "<Your.Email@sas.com>"
+      email: "<Your.Email@company.com>"
   azure:
     location: 'australiaeast'
     subscription: '<Your subscription name>'
