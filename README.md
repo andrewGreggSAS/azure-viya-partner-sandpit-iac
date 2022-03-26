@@ -63,7 +63,7 @@ It is IMPORTANT that BOTH of these variables conform to a few rules:
 * must not end with a dash
 
 ```
-cd azure-viya-partner-iac
+cd azure-viya-partner-sandpit-iac
 nano core-variables.yaml
 ```
 
