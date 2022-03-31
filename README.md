@@ -5,16 +5,18 @@ Full Infrastructure and software deployment orchestration for SAS Viya 4 on Azur
 Use-case: Create a dedicated Azure K8s deployment of SAS Viya 4 for the purposes of a Partner Sandpit. Capably sized and deployable in 24 hours.
 
 
-## Description
+## Summary
 
 The aim of the Azure Viya Partner Env IAC is to enable fast deployment of SAS Viya (4) deployed on Azure Kubernetes Service (AKS).
-For this project we've utilized the existing automation in these SAS Repositories:
+This deployment can be used in support of Viya demonstrations or as a sandpit to experiment and test new Viya Capabilities and features
+
+This project has utilised the existing automation in these SAS Github Repositories:
 
 https://github.com/sassoftware/viya4-iac-azure
 
 https://github.com/sassoftware/viya4-deployment
 
-As changes are made and improvements/features are added they may or may not seamlessly merge. Work to include new components that require configuration may continue in the future if there is value seen in doing so.
+Note: As changes are made and improvements/features are added,  they may or may not seamlessly merge. Work to include new components that require configuration may continue in the future if there is value seen in doing so.
 
 The default config files deploy the the environment with the following configuration:
 
@@ -26,32 +28,38 @@ The default config files deploy the the environment with the following configura
 Variables files allow you to vary the specification of the infrastructure easily (see below)
 
 ## Getting Started
-### Set Up Prerequisites
+### Set Up Prerequisites Summary
 
-### Dependencies
-* You must have an Azure subscription to which you (your own Azure login) have authority to create Service Principals with Contributor roles
-* Being the Owner of your own Azure subscription is the target use-case here
-* You must have a Viya 4 order ( supplied by your SAS partner representative)
+* You must have an Azure subscription to which you (your own Azure login) have authority to create Service Principals with Contributor roles, being an Owner of your own Azure subscription is the target use-case here
+
+* You must have a Viya 4 order that is at a minimum SAS Visual Data Science preferably SAS Visual Data Science Decisioning
+
 * You must have access to your order at https://my.sas.com/en/my-orders.html
-* Suggested order is XXXXXXXX + YYYYYYYY + ZZZZZZZZ
-* You must create an Ubuntu machine connected to your network via your own vpn  
-* was vpn.sas.com/secure
-    * The best way to achieve this is to utilise the latest Windows Subsystem for Linux (WSL2) release of Ubuntu
+
+* You will need to create and then fetch the SAS Order API Key and client_secret
+
+* You must create an Ubuntu machine connected to your network
+    * One way to achieve this is to utilise the latest Windows Subsystem for Linux (WSL2) release of Ubuntu
     * Open the Microsoft Store on your SAS laptop
     * Type ‘Ubuntu 20.04 LTS’ in the search bar
     * Click the blue ‘Get’ button
     * Read the description and follow the steps to enable required the Windows feature
-    * You could also (instead) run a Linux VM somewhere with Ubuntu 20.04 on it, it will function exactly the same way other than the requiring network security changes to allow that machine access
-* You will need to set aside half a day or so to run the whole setup, by the next day you can have a running environment!
 
-### Deployment
+    * Another way is Linux VM somewhere within a virtualised container software like Virtual Box. Again intall Ubuntu 20.04 on it
 
-#### Step 1 - Clone
-Log into your Ubuntu 20.04 machine and clone this Repo:
+
+### Detailed Pre-requisites
+#### Azure subscription
+*  
+
+## Deployment
+
+### Step 1 - Clone
+Log into your Ubuntu 20.04 installation machine and clone this Repo:
 ```
 git clone https://github.com/andrewGreggSAS/azure-viya-partner-sandpit-iac
 ```
-#### Step 2 - Edit
+### Step 2 - Edit
 *core-variables.yaml* MUST be edited with your own details, git credentials for SAS gitlab, your Azure subscription details and two central variables you need to choose:
     {deployment_name} - The label stem for many of the infrastructure and resources and the
     {deployment_environment} - The environment name for THIS Viya 4 deployment and the name of the kubernetes namespace for it.
@@ -162,8 +170,8 @@ Inside this folder there are many folders and files now. The *viya4-iac-azure* f
 Re-generate the Terraform plan after making changes to the infrastructure specification (eg. adding more nodes to a pool)
 ```
 # Don't forget to setup your shell with python virtual env and shell environment variables
-source ~/pyvenv_ssaima/bin/activate
-source $HOME/azure-viya-ca-env-iac/source_all.bash
+source ~/${deployment_name}/bin/activate
+source $HOME/azure-viya-partner-sandpit-iac/source_all.bash
 
 cd $HOME/${deployment_name}-aks/viya4-iac-azure
 
