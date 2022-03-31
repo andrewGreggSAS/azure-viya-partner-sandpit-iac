@@ -47,10 +47,35 @@ Variables files allow you to vary the specification of the infrastructure easily
 
     * Another way is Linux VM somewhere within a virtualised container software like Virtual Box. Again intall Ubuntu 20.04 on it
 
-
 ### Detailed Pre-requisites
 #### Azure subscription
-*  
+* There are resources that need to be increased to cater for the viya deployment
+    1. Increase Standard Dv4 Family vCPUs to 350 from 10
+    2. Increase Standard EDSv4 Family VCPUs to 350 from 10
+    3. Increase Total Regional vCPUs(Cores-vCPUs) 410 from 10
+#### SAS Viya Order
+* You need permission to download the viya Order
+  [insert screenshot and link to PNG on how to do this]
+  * steps
+    * Open the email with your Viya or or access https://my.sas.com/en/my-orders.html
+* Create the SAS Viya Order Api ( If you have not already done so)
+  [insert screenshots here]
+  * steps
+    * From the My Orders window open the tool icon and select Viya Orders API
+      *Create you Viya Order Api - If you have done this you can skip this steps
+      [insert screenshots here]
+* Copy the SAS Order Api Key and client_secret
+  [insert screenshots here]
+
+## What this package is NOT and never will be
+Note: the intent of this package is to get a Viya 4 environment up and running quickly. HOWEVER this is not meant to replace the wonderful Viya Installation and Viya Administration enablement pathway available for partners in PartnerNet
+
+## Documentation
+As always refer to SAS online Documentation
+Viya Deployment https://go.documentation.sas.com/doc/en/itopscdc/v_025/dplyml0phy0dkr/titlepage.htm
+
+Viya Administration https://go.documentation.sas.com/doc/en/sasadmincdc/v_025/sasadminwlcm/home.htm
+
 
 ## Deployment
 
