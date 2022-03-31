@@ -4,6 +4,8 @@
 Full Infrastructure and software deployment orchestration for SAS Viya 4 on Azure K8s.
 Use-case: Create a dedicated Azure K8s deployment of SAS Viya 4 for the purposes of a Partner Sandpit. Capably sized and deployable in 24 hours.
 
+If you haven't already done so watch the deployment overview viya4 deployment video https://video.sas.com/sharing?videoId=6204768249001
+this will give an overall idea of the the intent of the deployment and the steps we are automating 
 
 ## Summary
 
@@ -45,7 +47,9 @@ Variables files allow you to vary the specification of the infrastructure easily
     * Click the blue ‘Get’ button
     * Read the description and follow the steps to enable required the Windows feature
 
-    * Another way is Linux VM somewhere within a virtualised container software like Virtual Box. Again intall Ubuntu 20.04 on it
+    * Another way is Linux VM somewhere within a virtualised container software like Virtual Box. Again install Ubuntu 20.04 on it
+
+    * When installing Ubuntu in your virtual environment make sure you set up a user in addition to root
 
 ### Detailed Pre-requisites
 #### Azure subscription
@@ -55,9 +59,13 @@ Variables files allow you to vary the specification of the infrastructure easily
     3. Increase Total Regional vCPUs(Cores-vCPUs) 410 from 10
 #### SAS Viya Order
 * You need permission to download the viya Order
+  * If you haven't already done so watch the deployment overview viya4 deployment video https://video.sas.com/sharing?videoId=6204768249001
+  this will give an overall idea of the steps we are automating
   [insert screenshot and link to PNG on how to do this]
   * steps
     * Open the email with your Viya or or access https://my.sas.com/en/my-orders.html
+    * See SAS Installation Documentation https://documentation.sas.com/?docsetVersion=v_001&docsetId=mysasprtl&docsetTarget=p0tu7dceilgd9mn17o4p6j674nz9.htm#p0ne79e56scnp0n1scgg9yilenaf
+
 * Create the SAS Viya Order Api ( If you have not already done so)
   [insert screenshots here]
   * steps
@@ -66,6 +74,8 @@ Variables files allow you to vary the specification of the infrastructure easily
       [insert screenshots here]
 * Copy the SAS Order Api Key and client_secret
   [insert screenshots here]
+      Open the API you created in the step above
+      copy the API Key and Client Secret. Store these values in a safe place as they will be used in the deployment_repo-variables.yaml step later
 
 ## What this package is NOT and never will be
 Note: the intent of this package is to get a Viya 4 environment up and running quickly. HOWEVER this is not meant to replace the wonderful Viya Installation and Viya Administration enablement pathway available for partners in PartnerNet
@@ -85,7 +95,10 @@ Log into your Ubuntu 20.04 installation machine and clone this Repo:
 git clone https://github.com/andrewGreggSAS/azure-viya-partner-sandpit-iac
 ```
 ### Step 2 - Edit
-*core-variables.yaml* MUST be edited with your own details, git credentials for SAS gitlab, your Azure subscription details and two central variables you need to choose:
+*core-variables.yaml* MUST be edited with your own details,
+  * git credentials for github,
+  * your Azure subscription details and
+  * two variables you need to choose:
     {deployment_name} - The label stem for many of the infrastructure and resources and the
     {deployment_environment} - The environment name for THIS Viya 4 deployment and the name of the kubernetes namespace for it.
 
