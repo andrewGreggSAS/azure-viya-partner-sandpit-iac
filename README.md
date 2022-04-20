@@ -5,7 +5,7 @@ Full Infrastructure and software deployment orchestration for SAS Viya 4 on Azur
 Use-case: Create a dedicated Azure K8s deployment of SAS Viya 4 for the purposes of a Partner Sandpit. Capably sized and deployable in 24 hours.
 
 If you haven't already done so watch the deployment overview viya4 deployment video https://video.sas.com/sharing?videoId=6204768249001
-this will give an overall idea of the the intent of the deployment and the steps we are automating 
+this will give an overall idea of the the intent of the deployment and the steps we are automating
 
 ## Summary
 

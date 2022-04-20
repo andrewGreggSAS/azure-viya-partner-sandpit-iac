@@ -11,7 +11,7 @@ deployment:
       version: "1.21.7"
     network:
       #192.31.37.2/32		vpn.sas.com/secure
-      defaultpublicaccesscidrs: "[\"192.31.37.2/32\"]"
+      defaultpublicaccesscidrs: "[\"0.0.0.0/0\"]"
     storage: ## NB// This is the 'standard' configuration that creates and NFS server with RAID config the Premium NetApp service is not implemented in this automated deplyoment
       nfs:
         publicip: 'true'

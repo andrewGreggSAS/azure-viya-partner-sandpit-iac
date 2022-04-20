@@ -4,7 +4,7 @@
 deployment:
   environment:
     ingress:
-      sourceranges: "[\"192.31.37.2/32\"]"
+      sourceranges: "[\"0.0.0.0/0\"]"
     openldap:
       ldappassword: '${deployment_environment}_ldap'
       # viyaadminspassword is set for both the viya_admin user and sasboot
