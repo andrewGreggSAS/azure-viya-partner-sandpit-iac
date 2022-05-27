@@ -178,6 +178,30 @@ The aim is to build tasks in each script that are idempotent, such that re-runni
 
 Now that you have a Viya deployment, you need to look after it. I've put a few scripts and snippets here that I use to help you out:
 
+#### Starting and stopping
+
+The following commands pause your kubernetes cluster. with the following notes:
+* The cluster state of a stopped AKS cluster is preserved for up to 12 months. If your cluster is stopped for more than 12 months, the cluster state cannot be recovered. For more information, see the AKS Support Policies.
+* You can only start or delete a stopped AKS cluster. To perform any operation like scale or upgrade, start your cluster first.
+* The customer provisioned PrivateEndpoints linked to private cluster need to be deleted and recreated again when you start a stopped AKS cluster.”
+
+
+The following is based on a SAS communities article found HERE
+https://communities.sas.com/t5/SAS-Communities-Library/Reduce-the-Azure-bill-when-you-are-not-using-the-SAS-Viya/ta-p/789920 see the Section: Implementing the AKS stop/start with Viya
+
+Use az aks stop command to pause the cluster
+
+```
+az aks stop --name ${deployment_name}-aks --resource-group ${deployment_name}-rg --subscription ${subscription}
+
+```
+Use az aks start command to un-pause the cluster
+
+```
+az aks start --name ${deployment_name}-aks --resource-group ${deployment_name}-rg --subscription ${subscription}
+
+```
+
 #### Shell Environment
 
 ```
