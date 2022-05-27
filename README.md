@@ -95,18 +95,18 @@ Log into your Ubuntu 20.04 installation machine and clone this Repo:
 git clone https://github.com/andrewGreggSAS/azure-viya-partner-sandpit-iac
 ```
 ### Step 2 - Edit
-*core-variables.yaml* MUST be edited with your own details,
-  * git credentials for github,
+There are 4 configuration (YAML) files to edit
+1. *core-variables.yaml* MUST be edited with your own details,
   * your Azure subscription details and
   * two variables you need to choose:
-    {deployment_name} - The label stem for many of the infrastructure and resources and the
-    {deployment_environment} - The environment name for THIS Viya 4 deployment and the name of the kubernetes namespace for it.
+    {deployment_name} - The label stem for many of the infrastructure and resources
+    {deployment_environment} - which will be environment name for THIS Viya 4 deployment and the name of the kubernetes namespace for it.
 
-It is IMPORTANT that BOTH of these variables conform to a few rules:
-* Eleven (11) characters or less so that all the derived fields have names that are not too long.
-* start with a lower-case letter
-* only contain letters, numbers and dash (-)
-* must not end with a dash
+It is IMPORTANT that BOTH of these variables conform to the following rules:
+  * Eleven (11) characters or less so that all the derived fields have names that are not too long.
+  * start with a lower-case letter
+  * only contain letters, numbers and dash (-)
+  * must not end with a dash
 
 ```
 cd azure-viya-partner-sandpit-iac
@@ -115,19 +115,35 @@ nano core-variables.yaml
 
 When your deployment is complete, the environment will be accessed on the URL {deployment_environment}-{deployment_name}.{azure_location}.cloudapp.azure.com. So as an example, I use partner as my *deployment_name* and a simple short name indicating the Viya environment's purpose like *sandpit*, making the URL:
     *sandpit-partner.australiaeast.cloudapp.azure.com*
-This is to facilitate deploying multiple environments to a single set of kubernetes infrastructure, as well as deploying other adjacent services to explore integration.
 
+This will allow deploying multiple environments to a single set of kubernetes infrastructure, as well as deploying other adjacent services to explore integration.
 
-There are four scripts that each must be run  to complete the process, each with its own folder also containing a variables yaml file.
-*resources/deployment_repo-variables.yaml* MUST be edited with your own software order information.
+2. *resources/deployment_repo-variables.yaml* MUST be edited with your own software order information.
+
+These should have been stored following the instructions in Copy the SAS Order Api Key and client_secret above
+
+there are 2 other version filds that *may* be edited
+  * iacazure:tag: corresponds the *version* of SAS's Infrastructure as Code GIT repository you would like to used see https://github.com/sassoftware/viya4-iac-azure
+
+  * viya4deployment:versiontag: corresponds to the SAS *version* of viya deployment GIT repository https://github.com/sassoftware/viya4-deployment you wish to use
+
 ```
 nano resources/deployment_repo-variables.yaml
 ```
 
 All other variables files contain current tested default values. These can be customized to your requirement but changes to client software versions (such as ansible, kubectl or terraform) can cause issues that will need manual troubleshooting and intervention.
 
+3. *iac/iac_build-variables.yaml* MUST be edited to update the variable
+network:defaultpublicaccesscidrs - this can be your home machine IP or work network. this uses CIDR notation. there may also be multiple IPs each seperated by a comma
+```
+nano iac/iac_build-variables.yaml
+```
+
+4. *viya/viya-deployment-variables.yaml* MUST be edited to update the variable ingress:sourceranges - This should be same list of CIDRS as specified in the iac/iac_build-variables.yaml file for network:defaultpublicaccesscidrs
 
 #### Step 3 - Run scripts in sequence
+There are four scripts that each must be run  to complete the process, each with its own folder also containing a variables yaml file.
+
 
 1. ubuntu_deployer - Prepares your local machine with packages and configuration required
 ```
