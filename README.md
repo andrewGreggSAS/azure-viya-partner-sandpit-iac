@@ -140,6 +140,9 @@ nano iac/iac_build-variables.yaml
 ```
 
 4. *viya/viya-deployment-variables.yaml* MUST be edited to update the variable ingress:sourceranges - This should be same list of CIDRS as specified in the iac/iac_build-variables.yaml file for network:defaultpublicaccesscidrs
+```
+nano viya/viya-deployment-variables.yaml
+```
 
 #### Step 3 - Run scripts in sequence
 There are four scripts that each must be run  to complete the process, each with its own folder also containing a variables yaml file.
